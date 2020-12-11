@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\GreetingController;
+use \App\Http\Controllers\CategoriesController;
 use \App\Http\Controllers\NewsController;
 
 /*
@@ -25,4 +26,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/news', [NewsController::class, 'index']);
+Route::get('/categories', [CategoriesController::class, 'index']);
+
+Route::get('/news/item/{id}', [NewsController::class, 'index'])
+    ->name('news-item')
+    ->where('id', '[1-3]+');

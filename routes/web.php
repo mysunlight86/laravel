@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\GreetingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', function () {
-    return view('greeting');
-});
+Route::get('/greeting', [GreetingController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about');

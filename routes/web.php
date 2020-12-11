@@ -26,8 +26,12 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/categories', [CategoriesController::class, 'index']);
+Route::get('/news', [NewsController::class, 'index']);
 
-Route::get('/news/item/{id}', [NewsController::class, 'index'])
-    ->name('news-item')
-    ->where('id', '[1-3]+');
+Route::get('/news/{category}', [NewsController::class, 'getCategory'])
+    ->name('news__category');
+
+Route::get('/news/{category}/{id}', [NewsController::class, 'renderNews'])
+    ->name('news__item');
+
+// Route::get('news', [NewsController::class, 'renderNews']);

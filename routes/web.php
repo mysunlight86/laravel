@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\GreetingController;
-use \App\Http\Controllers\CategoriesController;
 use \App\Http\Controllers\NewsController;
 
 /*
@@ -33,5 +32,3 @@ Route::get('/news/{category}', [NewsController::class, 'getCategory'])
 
 Route::get('/news/{category}/{id}', [NewsController::class, 'renderNews'])
     ->name('news__item');
-
-// Route::get('news', [NewsController::class, 'renderNews']);

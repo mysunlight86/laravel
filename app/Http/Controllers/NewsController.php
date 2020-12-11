@@ -25,12 +25,8 @@ class NewsController extends Controller
     {
         echo "News categories";
 
-        // dd($this->news);
-
         foreach ($this->news as $category => $arrayCategory) {
             $url = route('news__category', ['category' => $category]);
-            // dd($url, $category);
-            // dd($url . '/' . $category);
             echo "<p><a href='{$url}'>{$category}</a></p>";
         }
     }
@@ -39,33 +35,14 @@ class NewsController extends Controller
     {
         echo "News page {$category}";
 
-        // dd($this->news[$id]);
-
         foreach ($this->news[$category] as $itemNews => $item) {
-            // $url = route('news-item', ['id' => $category]);
-            // dd($url);
-            // echo "<div><a href='{$url}'>{$item['title']}</a></div>";
-
             $url = route('news__item', ['category' => $category, 'id' => $itemNews]);
-            // dd($url, $item, $itemNews);
             echo "<p><a href='{$url}'>{$item}</a></p>";
-
-            // foreach ($arrayNews as $itemNews => $item) {
-            //     $url = route('news__item', ['category' => $category, 'id' => $itemNews]);
-            //     // dd($url, $item, $itemNews);
-            //     echo "<p><a href='{$url}'>{$item}</a></p>";
-            // }
         }
-
-        // foreach ($this->news[$category] as $item) {
-        //     echo "<p>{$item}</p>";
-        // }
     }
 
     public function renderNews($category, $id)
     {
         echo "News {$id}";
-
-        
     }
 }

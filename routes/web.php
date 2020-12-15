@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\GreetingController;
+use \App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', function () {
-    return view('greeting');
-});
+Route::get('/greeting', [GreetingController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', [NewsController::class, 'index']);
+
+Route::get('/news/{category}', [NewsController::class, 'getCategory'])
+    ->name('news__category');
+
+Route::get('/news/{category}/{id}', [NewsController::class, 'renderNews'])
+    ->name('news__item');

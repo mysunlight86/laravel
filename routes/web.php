@@ -30,7 +30,7 @@ Route::group([
     'as' => 'news__',
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
-        ->name('main');
+        ->name('index');
 
     Route::get('/{category}', [NewsController::class, 'getCategory'])
         ->name('category');

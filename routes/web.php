@@ -25,10 +25,18 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/news', [NewsController::class, 'index']);
+Route::group([
+    'prefix' => 'news',
+    'as' => 'news__',
+], function () {
+    Route::get('/', [NewsController::class, 'index'])
+        ->name('main');
 
-Route::get('/news/{category}', [NewsController::class, 'getCategory'])
-    ->name('news__category');
+    Route::get('/{category}', [NewsController::class, 'getCategory'])
+        ->name('category');
 
-Route::get('/news/{category}/{id}', [NewsController::class, 'renderNews'])
-    ->name('news__item');
+    Route::get('/{category}/{id}', [NewsController::class, 'renderNews'])
+        ->name('item');
+});
+
+

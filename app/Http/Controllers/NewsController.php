@@ -23,26 +23,17 @@ class NewsController extends Controller
 
     public function index()
     {
-        echo "News categories";
-
-        foreach ($this->news as $category => $arrayCategory) {
-            $url = route('news__category', ['category' => $category]);
-            echo "<p><a href='{$url}'>{$category}</a></p>";
-        }
+        return view('news.index', ['news' => $this->news]);
     }
 
     public function getCategory($category)
     {
-        echo "News page {$category}";
-
-        foreach ($this->news[$category] as $itemNews => $item) {
-            $url = route('news__item', ['category' => $category, 'id' => $itemNews]);
-            echo "<p><a href='{$url}'>{$item}</a></p>";
-        }
+        $newsCategory = $this->news[$category];
+        return view('news.category', ['newsCategory' => $newsCategory, 'category' => $category]);
     }
 
     public function renderNews($category, $id)
     {
-        echo "News {$id}";
+        return view('news.item', ['id' => $id, 'category' => $category]);
     }
 }

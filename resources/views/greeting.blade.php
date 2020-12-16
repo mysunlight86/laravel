@@ -1,2 +1,10 @@
-<h1>Дорогие, друзья!</h1>
-<p>Добро пожаловать на&nbsp;сайт.</p>
+@extends('layouts.main')
+
+@section('title')
+    Greeting
+@endsection
+
+@section('content')
+    <h1>Dear friends!</h1>
+    <p>Welcome to the site.</p>
+@endsection

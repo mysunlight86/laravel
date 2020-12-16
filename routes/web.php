@@ -19,11 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', [GreetingController::class, 'index']);
+Route::get('/greeting', [GreetingController::class, 'index'])
+    ->name('greeting');
 
 Route::get('/about', function () {
     return view('about');
-});
+})
+    ->name('about');
 
 Route::group([
     'prefix' => 'news',

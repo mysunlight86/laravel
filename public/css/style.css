@@ -1,3 +1,7 @@
+html, body {
+    margin: 0;
+}
+
 .header, .footer {
     background-color: #cecece;
 }
@@ -7,6 +11,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .menu {
@@ -21,6 +30,7 @@
 }
 
 .footer {
+    padding: 0 20px;
     position: fixed;
     bottom: 0;
     left: 0;

@@ -6,6 +6,9 @@
 
 @section('content')
     <h1>Category creation page</h1>
+    {!! Form::open(['url' => 'foo/bar']) !!}
+        //
+    {!! Form::close() !!}
     <form action="{{route('admin_news_create')}}" method="post">
         @csrf
         <label>

@@ -1,8 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent
-    {{$category}}
+    @parent News {{$id}}
 @endsection
 
 @section('content')

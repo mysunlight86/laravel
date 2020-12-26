@@ -29,7 +29,7 @@ Route::get('/about', function () {
 
 Route::group([
     'prefix' => 'news',
-    'as' => 'news__',
+    'as' => 'news_',
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
@@ -41,4 +41,16 @@ Route::group([
         ->name('item');
 });
 
-
+/**
+ * Admin news
+ */
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin_news_',
+    'namespace' => '\App\Http\Controllers\Admin'
+], function () {
+    Route::get('/', 'NewsController@index')
+        ->name('index');
+    Route::get('/create', 'NewsController@create')
+        ->name('create');
+});

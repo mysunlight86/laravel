@@ -19,16 +19,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/greeting', [GreetingController::class, 'index']);
+Route::get('/greeting', [GreetingController::class, 'index'])
+    ->name('greeting');
 
 Route::get('/about', function () {
     return view('about');
+})
+    ->name('about');
+
+Route::group([
+    'prefix' => 'news',
+    'as' => 'news__',
+], function () {
+    Route::get('/', [NewsController::class, 'index'])
+        ->name('index');
+
+    Route::get('/{category}', [NewsController::class, 'getCategory'])
+        ->name('category');
+
+    Route::get('/{category}/{id}', [NewsController::class, 'renderNews'])
+        ->name('item');
 });
 
-Route::get('/news', [NewsController::class, 'index']);
 
-Route::get('/news/{category}', [NewsController::class, 'getCategory'])
-    ->name('news__category');
-
-Route::get('/news/{category}/{id}', [NewsController::class, 'renderNews'])
-    ->name('news__item');

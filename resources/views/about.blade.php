@@ -1,3 +1,12 @@
-<h1>Страница &laquo;О&nbsp;проекте&raquo; как основа для хорошего старта</h1>
-<p>Страница с&nbsp;описанием проекта для сайта является таким&nbsp;же обязательным атрибутом, как логотип или контакты. Причем, по&nbsp;мнению многих руководителей продуктов, первое влияет на&nbsp;успешный старт гораздо сильнее всего остального.</p>
-<p>Компании, в&nbsp;зависимости от&nbsp;их&nbsp;текущего состояния, используют страницы с&nbsp;описанием проекта в&nbsp;разных целях. Часто, по&nbsp;мере развития бизнеса, эта цель трансформируется. Однако раздел &laquo;О&nbsp;сайте&raquo; при правильном использовании всегда остается эффективным инструментом для работы с&nbsp;аудиторией проекта.</p>
+@extends('layouts.main')
+
+@section('title')
+    About
+@endsection
+
+@section('content')
+    <h1>About the project page as a basis for a good start</h1>
+    <p>A page with a description of a project for a site is the same mandatory attribute as a logo or contacts. And, according to many product managers, the former affects a successful start much more than anything else.</p>
+    <p>Companies, depending on their current state, use project pages for different purposes. Often, as the business develops, this goal transforms. However, the About Site section, if used correctly, always remains an effective tool for working with the project audience.</p>
+@endsection
+

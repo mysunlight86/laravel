@@ -6,15 +6,13 @@
 
 @section('content')
     <h1>Category creation page</h1>
-    {!! Form::open(['url' => 'foo/bar']) !!}
-        //
+    {!! Form::open(['route' => 'admin_news_create']) !!}
+        
+        {!! Form::label('category', 'Enter category name:') !!}<br>
+        
+        {!! Form::text('category', '') !!}<br>
+        
+        {!! Form::submit('Send', ['class' => 'button']) !!}
+
     {!! Form::close() !!}
-    <form action="{{route('admin_news_create')}}" method="post">
-        @csrf
-        <label>
-            <p>Enter category name</p>
-            <input type="text" name="category">
-        </label><br>
-        <input type="submit" class="button">
-    </form>
 @endsection

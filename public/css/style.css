@@ -21,7 +21,9 @@ html, body {
 }
 
 .link {
-    margin: 0 15px;
+    margin: 0 10px;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 .content {

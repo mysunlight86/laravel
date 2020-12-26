@@ -13,11 +13,6 @@ html, body {
     align-items: center;
 }
 
-.content {
-    width: 80%;
-    margin: 0 auto;
-}
-
 .menu {
     margin: 0;
     padding: 0;
@@ -27,6 +22,15 @@ html, body {
 
 .link {
     margin: 0 15px;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.button {
+    margin-top: 20px;
 }
 
 .footer {

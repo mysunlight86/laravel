@@ -14,6 +14,7 @@ class NewsController extends Controller
 
     public function create()
     {
+        dump($_POST);
         return view('admin.news.createNewsCategory');
     }
 }

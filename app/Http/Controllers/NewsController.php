@@ -3,22 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
 class NewsController extends Controller
 {
-    private $categories = [
-        1 => 'Education',
-        2 => 'Food',
-        3 => 'Relax',
-    ];
-
     public function index()
     {
+        $categories = (new Category())->getCategoriesList();
         return view(
             'news.index', 
-            ['categories' => $this->categories]
+            ['categories' => $categories]
         );
     }
 

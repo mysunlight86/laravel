@@ -16,25 +16,25 @@ class News
         2 => [
             'id' => 2,
             'title' => 'News 2',
-            'content' => 'New2 content',
+            'content' => 'New 2 content',
             'category_id' => 2
         ],
         3 => [
             'id' => 3,
             'title' => 'News 3',
-            'content' => 'New3 content',
+            'content' => 'New 3 content',
             'category_id' => 3
         ],
         4 => [
             'id' => 4,
             'title' => 'News 4',
-            'content' => 'New4 content',
+            'content' => 'New 4 content',
             'category_id' => 1
         ],
         5 => [
             'id' => 5,
             'title' => 'News 5',
-            'content' => 'New5 content',
+            'content' => 'New 5 content',
             'category_id' => 2
         ]
     ];

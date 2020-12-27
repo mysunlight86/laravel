@@ -51,6 +51,12 @@ Route::group([
 ], function () {
     Route::get('/', 'NewsController@index')
         ->name('index');
-    Route::match(['get', 'post'], '/create', 'NewsController@create')
-        ->name('create');
+    Route::get('/create', 'NewsController@createCategoryView')
+        ->name('create-category-view');
+    Route::post('/create', 'NewsController@createCategory')
+        ->name('create-category');
+    Route::get('/create-news', 'NewsController@createNewsView')
+        ->name('create-news-view');
+    Route::post('/create-news', 'NewsController@createNews')
+            ->name('create-news');
 });

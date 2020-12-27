@@ -12,9 +12,23 @@ class NewsController extends Controller
         return '<h1>Admin main page</h1>';
     }
 
-    public function create()
+    public function createCategory()
     {
-        dump($_POST);
+        return redirect()->route('admin_news_create-category-view');
+    }
+
+    public function createCategoryView()
+    {
         return view('admin.news.createNewsCategory');
+    }
+
+    public function createNews()
+    {
+        return redirect()->route('admin_news_create-news-view');
+    }
+
+    public function createNewsView()
+    {
+        return view('admin.news.createNewsItem');
     }
 }

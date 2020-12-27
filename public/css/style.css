@@ -31,6 +31,10 @@ html, body {
     margin: 0 auto;
 }
 
+.form-element {
+    margin-top: 20px;
+}
+
 .button {
     margin-top: 20px;
 }

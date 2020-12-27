@@ -16,4 +16,10 @@
             </a>
         </p>
     @endforeach
+    <p>
+        <a href="{{route('admin_news_create-category-view')}}">Create category</a>
+    </p>
+    <p>
+        <a href="{{route('admin_news_create-news-view')}}">Create news</a>
+    </p>
 @endsection

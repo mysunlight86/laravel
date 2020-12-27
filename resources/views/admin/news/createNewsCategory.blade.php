@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>Category creation page</h1>
-    {!! Form::open(['route' => 'admin_news_create']) !!}
+    {!! Form::open(['route' => 'admin_news_create-category']) !!}
         
         {!! Form::label('category', 'Enter category name:') !!}<br>
         

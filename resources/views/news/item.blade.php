@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent News {{$id}}
+    @parent News
 @endsection
 
 @section('content')
-    <h1>News {{$id}}</h1>
-    <p>Эта новость из категории {{$category}}</p>
+    <h1>{{$news['title']}}</h1>
+    <p>{{$news['content']}}</p>
 @endsection

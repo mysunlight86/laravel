@@ -6,13 +6,16 @@
 
 @section('content')
     <h1>News categories</h1>
-    @foreach($news as $category => $arrayCategory)
+    @foreach($categories as $id => $nameCategory)
         @php
-            $url = route('news_category', ['category' => $category]);
+            $url = route(
+                'news_category', 
+                ['categoryId' => $id]
+            );
         @endphp
         <p>
             <a href='{{$url}}'>
-                {{$category}}
+                {{$nameCategory}}
             </a>
         </p>
     @endforeach

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,16 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id_category');
-            $table->string('name', 50)
+        Schema::create('news', function (Blueprint $table) {
+            $table->id();
+            $table->string('title', 50)
                 ->unique()
+                ->nullabele(false);
+            $table->string('source', 100)
+                ->default(null);
+            $table->text('text')
+                ->nullabele(true);
+            $table->tinyInteger('category_id')
                 ->nullabele(false);
             $table->timestamps();
             $table->softDeletes();
@@ -30,6 +36,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categories');
+        Schema::drop('news');
     }
 }

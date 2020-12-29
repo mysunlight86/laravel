@@ -19,11 +19,11 @@ class CreateNewsTable extends Migration
                 ->unique()
                 ->nullabele(false);
             $table->string('source', 100)
-                ->default(null);
+                ->nullable(true);
             $table->text('text')
-                ->nullabele(true);
-            $table->tinyInteger('category_id')
-                ->nullabele(false);
+                ->nullable(true);
+            $table->unsignedBigInteger('category_id')
+                ->nullable(false);
             $table->timestamps();
             $table->softDeletes();
         });

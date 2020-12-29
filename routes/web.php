@@ -29,16 +29,36 @@ Route::get('/about', function () {
 
 Route::group([
     'prefix' => 'news',
-    'as' => 'news__',
+    'as' => 'news_',
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
 
-    Route::get('/{category}', [NewsController::class, 'getCategory'])
-        ->name('category');
+    Route::get('/{categoryId}', [NewsController::class, 'getCategory'])
+        ->name('category')
+        ->where('categoryId', '[0-9]+');
 
-    Route::get('/{category}/{id}', [NewsController::class, 'renderNews'])
-        ->name('item');
+    Route::get('/category/{id}', [NewsController::class, 'renderNews'])
+        ->name('item')
+        ->where('id', '[0-9]+');
 });
 
-
+/**
+ * Admin news
+ */
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin_news_',
+    'namespace' => '\App\Http\Controllers\Admin'
+], function () {
+    Route::get('/', 'NewsController@index')
+        ->name('index');
+    Route::get('/create', 'NewsController@createCategoryView')
+        ->name('create-category-view');
+    Route::post('/create', 'NewsController@createCategory')
+        ->name('create-category');
+    Route::get('/create-news', 'NewsController@createNewsView')
+        ->name('create-news-view');
+    Route::post('/create-news', 'NewsController@createNews')
+            ->name('create-news');
+});

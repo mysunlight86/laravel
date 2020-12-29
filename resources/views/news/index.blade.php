@@ -6,14 +6,23 @@
 
 @section('content')
     <h1>News categories</h1>
-    @foreach($news as $category => $arrayCategory)
+    @foreach($categories as $id => $nameCategory)
         @php
-            $url = route('news__category', ['category' => $category]);
+            $url = route(
+                'news_category', 
+                ['categoryId' => $id]
+            );
         @endphp
         <p>
             <a href='{{$url}}'>
-                {{$category}}
+                {{$nameCategory}}
             </a>
         </p>
     @endforeach
+    <p>
+        <a href="{{route('admin_news_create-category-view')}}">Create category</a>
+    </p>
+    <p>
+        <a href="{{route('admin_news_create-news-view')}}">Create news</a>
+    </p>
 @endsection

@@ -2,38 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class NewsController extends Controller
 {
-    private $news = [
-        'education' => [
-            11 => 'news 11',
-            12 => 'news 12',
-        ],
-        'food' => [
-            21 => 'news 21',
-            22 => 'news 22',
-        ],
-        'relax' => [
-            31 => 'news 31',
-            32 => 'news 32',
-        ],
-    ];
-
     public function index()
     {
-        return view('news.index', ['news' => $this->news]);
+        $categories = (new Category())->getCategoriesList();
+        return view(
+            'news.index', 
+            ['categories' => $categories]
+        );
     }
 
-    public function getCategory($category)
+    public function getCategory($categoryId)
     {
-        $newsCategory = $this->news[$category];
-        return view('news.category', ['newsCategory' => $newsCategory, 'category' => $category]);
+        $news = (new News())->getByCategoryId($categoryId);
+        return view(
+            'news.category', 
+            ['news' => $news]
+        );
     }
 
-    public function renderNews($category, $id)
+    public function renderNews($id)
     {
-        return view('news.item', ['id' => $id, 'category' => $category]);
+        $news = (new News())->getById($id);
+        return view(
+            'news.item', 
+            ['news' => $news]
+        );
     }
 }

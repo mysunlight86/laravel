@@ -1,3 +1,7 @@
+html, body {
+    margin: 0;
+}
+
 .header, .footer {
     background-color: #cecece;
 }
@@ -17,10 +21,26 @@
 }
 
 .link {
-    margin: 0 15px;
+    margin: 0 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-element {
+    margin-top: 20px;
+}
+
+.button {
+    margin-top: 20px;
 }
 
 .footer {
+    padding: 0 20px;
     position: fixed;
     bottom: 0;
     left: 0;

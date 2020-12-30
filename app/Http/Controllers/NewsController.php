@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 // use App\Models\News;
-use App\Models\Category;
+// use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
@@ -60,7 +60,29 @@ class NewsController extends Controller
 
     public function getCategory($categoryId)
     {
-        $news = (new News())->getByCategoryId($categoryId);
+        $sql = 'SELECT * FROM news WHERE category_id = :categoryId';
+        $news = DB::select($sql, [':categoryId' => $categoryId]);
+        // $result = DB::table('news')
+        //     ->where(['category_id' => $categoryId])
+        //     ->get();
+
+      /*  $news = [];
+        foreach ($result as $id => $item) {
+            // dump($item);
+            // dump($item->name);
+            $news[$id + 1] = $item;
+        //     $news[$id + 1] = $item->title;
+        } */
+
+        // dd($news);
+
+        // foreach ($this->news as $id => $item) {
+        //     if($item['category_id'] == $categoryId) {
+        //         $news[$id + 1] = $item;
+        //     }
+        // }
+
+        // $news = (new News())->getByCategoryId($categoryId);
         return view(
             'news.category', 
             ['news' => $news]

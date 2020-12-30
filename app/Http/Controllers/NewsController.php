@@ -2,16 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+// use App\Models\News;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $categories = (new Category())->getCategoriesList();
+        // dd(DB);
+
+       /* $sql = "SELECT * FROM categories";
+        // $result = D::select($sql);
+        // $result = DB::statement($sql);
+        // dump($result);
+        $result = DB::select($sql); */
+
+        // $categories = (new Category())->getCategoriesList();
+
+        $categories = [];
+
+
+        
+
+     /*   $sql = "SELECT * FROM categories WHERE id = :id";
+        $result = DB::select($sql, [':id' => 2]);
+         dd($result); */
+
+      /*   $result = DB::table('categories')
+            ->where(["id" => 3])
+            ->get(); */
+
+            // $result = DB::table('news')
+            //     ->get();
+
+        $result = DB::table('categories')
+            ->get();
+
+        foreach ($result as $item) {
+            // dump($item);
+            // dump($item->name);
+            $categories[] = $item->name;
+        }
+
+        // dd($result->toArray());
+
+        // dump($categories);
+        // dd($categories);
+        // dump($categories);
         return view(
             'news.index', 
             ['categories' => $categories]

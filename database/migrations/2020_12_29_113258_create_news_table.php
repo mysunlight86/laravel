@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->string('title', 50)
                 ->unique()
                 ->nullabele(false);
-            $table->string('source', 100)
+            $table->string('source', 1000)
                 ->nullable(true);
             $table->text('text')
                 ->nullable(true);

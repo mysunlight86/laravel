@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\News;
-// use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
@@ -91,10 +89,13 @@ class NewsController extends Controller
 
     public function renderNews($id)
     {
-        $news = (new News())->getById($id);
+        $sql = 'SELECT * FROM news WHERE id = :id';
+        $newsOne = DB::select($sql, [':id' => $id]);
+        // dd($newsOne);
+        // $news = (new News())->getById($id);
         return view(
             'news.item', 
-            ['news' => $news]
+            ['newsOne' => $newsOne]
         );
     }
 }

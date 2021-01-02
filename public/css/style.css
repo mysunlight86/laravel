@@ -1,9 +1,17 @@
 html, body {
     margin: 0;
+    height: 100%;
 }
 
-.header, .footer {
-    background-color: #cecece;
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+    flex: 1 0 auto;
 }
 
 .header {
@@ -11,6 +19,8 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid silver;
+    margin-bottom: 20px;
 }
 
 .menu {
@@ -24,11 +34,6 @@ html, body {
     margin: 0 10px;
     font-size: 14px;
     text-transform: uppercase;
-}
-
-.content {
-    width: 80%;
-    margin: 0 auto;
 }
 
 .form-element {
@@ -46,8 +51,8 @@ html, body {
 
 .footer {
     padding: 0 20px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 150px;
+    flex-shrink: 0;
 }

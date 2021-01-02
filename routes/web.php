@@ -34,11 +34,11 @@ Route::group([
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
 
-    Route::get('/{categoryId}', [NewsController::class, 'getCategory'])
+    Route::get('/category/{categoryId}', [NewsController::class, 'getCategory'])
         ->name('category')
         ->where('categoryId', '[0-9]+');
 
-    Route::get('/category/{id}', [NewsController::class, 'renderNews'])
+    Route::get('/news-item/{id}', [NewsController::class, 'renderNews'])
         ->name('item')
         ->where('id', '[0-9]+');
 });

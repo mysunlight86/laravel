@@ -10,7 +10,7 @@
         @php
             $url = route(
                 'news_category', 
-                ['categoryId' => $id]
+                ['categoryId' => $id + 1]
             );
         @endphp
         <p>

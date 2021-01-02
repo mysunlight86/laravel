@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
     public function index()
     {
-        $categories = (new Category())->getCategoriesList();
+        $result = DB::table('categories')
+            ->get();
+
+        $categories = [];
+        foreach ($result as $item) {
+            $categories[] = $item->name;
+        }
         return view(
             'news.index', 
             ['categories' => $categories]
@@ -20,7 +25,8 @@ class NewsController extends Controller
 
     public function getCategory($categoryId)
     {
-        $news = (new News())->getByCategoryId($categoryId);
+        $sql = 'SELECT * FROM news WHERE category_id = :categoryId';
+        $news = DB::select($sql, [':categoryId' => $categoryId]);
         return view(
             'news.category', 
             ['news' => $news]
@@ -29,10 +35,11 @@ class NewsController extends Controller
 
     public function renderNews($id)
     {
-        $news = (new News())->getById($id);
+        $sql = 'SELECT * FROM news WHERE id = :id';
+        $newsOne = DB::select($sql, [':id' => $id]);
         return view(
             'news.item', 
-            ['news' => $news]
+            ['newsOne' => $newsOne]
         );
     }
 }

@@ -6,16 +6,18 @@
 
 @section('content')
     <h1>News page of category</h1>
-    @forelse ($news as $id => $item)
+    @forelse ($news as $item)
         @php
+            $titleNews = $item->{'title'};
+
             $url = route(
                 'news_item', 
-                ['id' => $id]
+                ['id' => $item->{'id'}]
             );
         @endphp
 
         <p>
-            <a href='{{$url}}'>{{$item['title']}}</a>
+            <a href='{{$url}}'>{{$titleNews}}</a>
         </p>
         @empty
             No news

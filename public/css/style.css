@@ -39,6 +39,11 @@ html, body {
     margin-top: 20px;
 }
 
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .footer {
     padding: 0 20px;
     position: fixed;

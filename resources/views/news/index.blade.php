@@ -5,24 +5,18 @@
 @endsection
 
 @section('content')
-    <h1>News categories</h1>
-    @foreach($categories as $id => $nameCategory)
-        @php
-            $url = route(
-                'news_category', 
-                ['categoryId' => $id + 1]
-            );
-        @endphp
-        <p>
-            <a href='{{$url}}'>
-                {{$nameCategory}}
-            </a>
-        </p>
-    @endforeach
-    <p>
-        <a href="{{route('admin_news_create-category-view')}}">Create category</a>
-    </p>
-    <p>
-        <a href="{{route('admin_news_create-news-view')}}">Create news</a>
-    </p>
+    <h1>All news</h1>
+    @forelse($news as $item)
+        
+        <h2>{{$item->title}}</h2>
+        <p>{{$item->text}}</p>
+
+        <a href="{{route('news_item', $item->id)}}">
+            Read more...
+        </a>
+    @empty
+        <p>No news</p>
+    @endforelse
+
+    <div class="pagination">{{$news->links()}}</div>
 @endsection

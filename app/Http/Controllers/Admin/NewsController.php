@@ -9,7 +9,8 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return '<h1>Admin main page</h1>';
+        // return '<h1>Admin main page</h1>';
+        return view('admin.admin');
     }
 
     public function createCategory()

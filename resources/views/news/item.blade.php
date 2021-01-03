@@ -5,12 +5,7 @@
 @endsection
 
 @section('content')
-    @php
-        $titleNews = $newsOne[0]->{'title'};
-        $sourceImageNews = $newsOne[0]->{'source'};
-        $textNews = $newsOne[0]->{'text'};
-    @endphp
-    <h1>{{$titleNews}}</h1>
-    <img src="{{$sourceImageNews}}" alt="Abstract image" class="image-news">
-    <p>{{$textNews}}</p>
+    <h1>{{$newsOne->title}}</h1>
+    <img src="{{$newsOne->source}}" alt="Abstract image" class="image-news">
+    <p>{{$newsOne->text}}</p>
 @endsection

@@ -22,7 +22,7 @@ class NewsController extends Controller
 
     public function categories()
     {
-        dd(News::all());
+        // dd(News::all());
         $result = DB::table('categories')
             ->get();
 
@@ -31,19 +31,21 @@ class NewsController extends Controller
             $categories[] = $item->name;
         }
         return view(
-            'news.index', 
+            'news.categories', 
             ['categories' => $categories]
         );
     }
 
     public function getByCategory($categoryId)
     {
-        dd(News::all());
-
-        $sql = 'SELECT * FROM news WHERE category_id = :categoryId';
-        $news = DB::select($sql, [':categoryId' => $categoryId]);
-
         // dd(News::all());
+
+        // $sql = 'SELECT * FROM news WHERE category_id = :categoryId';
+        // $news = DB::select($sql, [':categoryId' => $categoryId]);
+
+        $news = (new News())->getByCategoryId($categoryId);
+
+        // dump($news);
 
         return view(
             'news.category', 
@@ -53,8 +55,9 @@ class NewsController extends Controller
 
     public function renderNews($id)
     {
-        $sql = 'SELECT * FROM news WHERE id = :id';
-        $newsOne = DB::select($sql, [':id' => $id]);
+        // $sql = 'SELECT * FROM news WHERE id = :id';
+        // $newsOne = DB::select($sql, [':id' => $id]);
+        $newsOne = News::find($id);
         return view(
             'news.item', 
             ['newsOne' => $newsOne]

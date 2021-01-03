@@ -46,6 +46,6 @@ class News extends Model
     {
         return static::query()
         ->where('category_id', $categoryId)
-        ->paginate(4);
+        ->paginate(5);
     }
 }

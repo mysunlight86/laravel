@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -23,13 +24,15 @@ class NewsController extends Controller
     public function categories()
     {
         // dd(News::all());
-        $result = DB::table('categories')
-            ->get();
+        // $result = DB::table('categories')
+        //     ->get();
 
-        $categories = [];
-        foreach ($result as $item) {
-            $categories[] = $item->name;
-        }
+        // $categories = [];
+        // foreach ($result as $item) {
+        //     $categories[] = $item->name;
+        // }
+        $categories = Category::query()
+            ->get();
         return view(
             'news.categories', 
             ['categories' => $categories]

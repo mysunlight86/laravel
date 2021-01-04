@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $source_id
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereSourceId($value)
  */
 class News extends Model
 {

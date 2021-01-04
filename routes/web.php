@@ -56,10 +56,14 @@ Route::group([
 ], function () {
     Route::get('/', 'NewsController@index')
         ->name('index');
-    Route::get('/create', 'NewsController@createCategoryView')
+    Route::get('/create-category', 'NewsController@createCategoryView')
         ->name('create-category-view');
-    Route::post('/create', 'NewsController@createCategory')
+    Route::post('/create-category', 'NewsController@createCategory')
         ->name('create-category');
+    Route::get('/create-source', 'NewsController@createSourceView')
+        ->name('create-source-view');
+    Route::post('/create-source', 'NewsController@createSource')
+        ->name('create-source');
     Route::get('/create-news', 'NewsController@createNewsView')
         ->name('create-news-view');
     Route::post('/create-news', 'NewsController@createNews')

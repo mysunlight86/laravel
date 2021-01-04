@@ -22,6 +22,7 @@ class CreateSourcesTable extends Migration
         });
 
         Schema::table('news', function (Blueprint $table) {
+            $table->string('title', 500)->change();
             $table->unsignedBigInteger('source_id')
                 ->after('category_id')
                 ->nullable(false)

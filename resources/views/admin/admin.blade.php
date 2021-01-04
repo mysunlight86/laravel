@@ -10,6 +10,9 @@
         <a href="{{route('admin_news_create-category-view')}}">Create category</a>
     </p>
     <p>
+        <a href="{{route('admin_news_create-source-view')}}">Create source</a>
+    </p>
+    <p>
         <a href="{{route('admin_news_create-news-view')}}">Create news</a>
     </p>
 @endsection

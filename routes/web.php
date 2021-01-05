@@ -67,5 +67,10 @@ Route::group([
     Route::get('/create-news', 'NewsController@createNewsView')
         ->name('create-news-view');
     Route::post('/create-news', 'NewsController@createNews')
-            ->name('create-news');
+        ->name('create-news');
+    Route::get('/edit-news/{$id}', 'NewsController@editNewsView')
+        ->name('edit-news-view')
+        ->where('id', '[0-9]+');
+    Route::post('/update-news', 'NewsController@editNews')
+        ->name('edit-news');
 });

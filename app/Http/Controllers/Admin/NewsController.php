@@ -77,4 +77,28 @@ class NewsController extends Controller
         // dd($categories, $sources);
         return view('admin.news.createNewsItem', ['categories' => $categories, 'sources' => $sources]);
     }
+
+    public function editNews($id)
+    {
+        if($request->isMethod('POST')){
+            $model = News::find($id);
+            $model->save();
+        }
+        return redirect()->route('news_item', ['id' => $id]);
+    }
+
+    public function editNewsView($id)
+    {
+        echo('123');
+        // dd($id);
+        $categories = Category::query()
+            ->get();
+        // dd($categories);
+        
+        $sources = Source::query()
+            ->get();
+        $newsOne = News::find($id);
+        // dd($newsOne);
+        return view('admin.news.updateNewsItem', ['categories' => $categories, 'sources' => $sources, 'newsOne' => $newsOne]);
+    }
 }

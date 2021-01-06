@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\News
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'news';
 
@@ -42,12 +44,26 @@ class News extends Model
         'title',
         'source',
         'text',
+        'category_id',
+        'source_id',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function getByCategoryId(int $categoryId)
     {
         return static::query()
         ->where('category_id', $categoryId)
         ->paginate(5);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
     }
 }

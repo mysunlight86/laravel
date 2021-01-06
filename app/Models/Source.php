@@ -29,8 +29,15 @@ class Source extends Model
 
     protected $table = 'sources';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id',
         'url',
     ];
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }

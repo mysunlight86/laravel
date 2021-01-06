@@ -13,6 +13,6 @@
         <a href="{{route('admin_news_create-source-view')}}">Create source</a>
     </p>
     <p>
-        <a href="{{route('admin_news_create-news-view')}}">Create news</a>
+        <a href="{{route('admin_news_addNews')}}">Create news</a>
     </p>
 @endsection

@@ -12,6 +12,7 @@
         <a href="{{route('news_item', $item->id)}}">
             Read more...
         </a>
+        <hr>
     @empty
         <p>No news</p>
     @endforelse

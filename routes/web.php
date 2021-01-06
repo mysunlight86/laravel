@@ -64,13 +64,25 @@ Route::group([
         ->name('create-source-view');
     Route::post('/create-source', 'NewsController@createSource')
         ->name('create-source');
-    Route::get('/create-news', 'NewsController@createNewsView')
-        ->name('create-news-view');
-    Route::post('/create-news', 'NewsController@createNews')
-        ->name('create-news');
-    Route::get('/edit-news/{$id}', 'NewsController@editNewsView')
-        ->name('edit-news-view')
-        ->where('id', '[0-9]+');
-    Route::post('/update-news', 'NewsController@editNews')
-        ->name('edit-news');
+    // Route::get('/create-news', 'NewsController@createNewsView')
+    //     ->name('create-news-view');
+    // Route::post('/create-news', 'NewsController@createNews')
+    //     ->name('create-news');
+    Route::match(['post', 'get'], '/addNews', [
+        'uses' => 'NewsController@add',
+        'as' => 'addNews'
+    ]);
+    Route::match(['post', 'get'], '/updateNews/{news}', [
+        'uses' => 'NewsController@update',
+        'as' => 'updateNews'
+    ]);
+    Route::match(['post', 'get'], '/deleteNews/{news}', [
+        'uses' => 'NewsController@delete',
+        'as' => 'deleteNews'
+    ]);
+    // Route::get('/edit-news/{$id}', 'NewsController@editNewsView')
+    //     ->name('edit-news-view')
+    //     ->where('id', '[0-9]+');
+    // Route::post('/update-news', 'NewsController@editNews')
+    //     ->name('edit-news');
 });

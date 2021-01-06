@@ -52,17 +52,18 @@ class NewsController extends Controller
         return view('admin.news.createNewsSource');
     }
 
-    public function createNews(Request $request)
+    /* public function createNews(Request $request)
     {
         if($request->isMethod('POST')){
             // dd($request->input('news'));
             $newsArray = $request->input('news');
             // dd($newsArray, $newsArray['category']);
             $model = new News();
-            $model->category_id = $newsArray['category'];
-            $model->source_id = $newsArray['source'];
-            $model->title = $newsArray['title'];
-            $model->text = $newsArray['text'];
+            // $model->category_id = $newsArray['category'];
+            // $model->source_id = $newsArray['source'];
+            // $model->title = $newsArray['title'];
+            // $model->text = $newsArray['text'];
+
             $model->save();
         }
         return redirect()->route('admin_news_create-news-view');
@@ -76,9 +77,36 @@ class NewsController extends Controller
             ->get();
         // dd($categories, $sources);
         return view('admin.news.createNewsItem', ['categories' => $categories, 'sources' => $sources]);
+    } */
+
+    public function add(Request $request)
+    {
+        $model = new News();
+        if ($request->isMethod('post')) {
+            $newsArray = $request->input('news');
+            $model->category_id = $newsArray['category_id'];
+            $model->source_id = $newsArray['source_id'];
+            $model->title = $newsArray['title'];
+            $model->text = $newsArray['text'];
+            // $model->fill($request->all());
+            $model->save();
+            return redirect()->route('news_index');
+        }
+        $categories = Category::query()
+            ->get();
+        $sources = Source::query()
+            ->get();
+        // dd($model);
+        return view('admin.news.createNewsItem', [
+            'news' => $model,
+            'rout' => 'admin_news_addNews',
+            'title' => 'Adding news',
+            'categories' => $categories,
+            'sources' => $sources,
+        ]);
     }
 
-    public function editNews($id)
+    /* public function editNews($id)
     {
         if($request->isMethod('POST')){
             $model = News::find($id);
@@ -100,5 +128,39 @@ class NewsController extends Controller
         $newsOne = News::find($id);
         // dd($newsOne);
         return view('admin.news.updateNewsItem', ['categories' => $categories, 'sources' => $sources, 'newsOne' => $newsOne]);
+    } */
+
+    public function update(Request $request, News $news)
+    {
+        dump($news);
+        if ($request->isMethod('post')) {
+            // dd($request->all());
+            $newsArray = $request->input('news');
+            $news->category_id = $newsArray['category_id'];
+            $news->source_id = $newsArray['source_id'];
+            $news->title = $newsArray['title'];
+            $news->text = $newsArray['text'];
+            // $news->fill($request->all());
+            $news->save();
+            return redirect()->route('news_index');
+        }
+        $categories = Category::query()
+            ->get();
+        $sources = Source::query()
+            ->get();
+        return view('admin.news.createNewsItem', [
+            'news' => $news,
+            'rout' => 'admin_news_updateNews',
+            'title' => 'Editing news',
+            'categories' => $categories,
+            'sources' => $sources,
+        ]);
+    }
+
+    public function delete(News $news)
+    {
+        dump($news);
+        $news->delete();
+        return redirect()->route('news_index');
     }
 }

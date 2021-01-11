@@ -1,57 +1,69 @@
 <?php
 
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class News
+/**
+ * App\Models\News
+ *
+ * @property int $id
+ * @property string $title
+ * @property string|null $source
+ * @property string|null $text
+ * @property int $category_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|News newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|News query()
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereSource($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property int $source_id
+ * @method static \Illuminate\Database\Eloquent\Builder|News whereSourceId($value)
+ */
+class News extends Model
 {
-    private $news = [
-        1 => [
-            'id' => 1,
-            'title' => 'News 1',
-            'content' => 'News 1 content',
-            'category_id' => 1
-        ],
-        2 => [
-            'id' => 2,
-            'title' => 'News 2',
-            'content' => 'New 2 content',
-            'category_id' => 2
-        ],
-        3 => [
-            'id' => 3,
-            'title' => 'News 3',
-            'content' => 'New 3 content',
-            'category_id' => 3
-        ],
-        4 => [
-            'id' => 4,
-            'title' => 'News 4',
-            'content' => 'New 4 content',
-            'category_id' => 1
-        ],
-        5 => [
-            'id' => 5,
-            'title' => 'News 5',
-            'content' => 'New 5 content',
-            'category_id' => 2
-        ]
+    use HasFactory;
+    use SoftDeletes;
+
+    protected $table = 'news';
+
+    protected $fillable = [
+        'id',
+        'title',
+        'source',
+        'text',
+        'category_id',
+        'source_id',
     ];
 
-    public function getById(int $id)
-    {
-        return $this->news[$id];
-    }
+    protected $dates = ['deleted_at'];
 
     public function getByCategoryId(int $categoryId)
     {
-        $news = [];
-        foreach ($this->news as $id => $item) {
-            if($item['category_id'] == $categoryId) {
-                $news[$id] = $item;
-            }
-        }
-        return $news;
+        return static::query()
+        ->where('category_id', $categoryId)
+        ->paginate(5);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function source()
+    {
+        return $this->belongsTo(Source::class);
     }
 }

@@ -8,18 +8,20 @@
     <h1>News page of category</h1>
     @forelse ($news as $item)
         @php
-            $titleNews = $item->{'title'};
-
             $url = route(
                 'news_item', 
-                ['id' => $item->{'id'}]
+                ['id' => $item->id]
             );
         @endphp
 
-        <p>
-            <a href='{{$url}}'>{{$titleNews}}</a>
-        </p>
+        <h2>{{$item->title}}</h2>
+        <p>{{$item->text}}</p>
+        <a href="{{$url}}">
+            Read more...
+        </a>
         @empty
             No news
     @endforelse
+
+    {{$news->links()}}
 @endsection

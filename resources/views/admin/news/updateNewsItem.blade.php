@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    @parent Make news
+    @parent Create news
 @endsection
 
 @section('content')
@@ -18,33 +18,28 @@
             $sourcesSelect[$item->id] = $item->url;
         }        
     @endphp
-
-    <h1>{{$title}}</h1>
-    {!! Form::open(['route' => [$rout, $news->id]]) !!}
+    <h1>News update page</h1>
+    {!! Form::open(['route' => 'admin_news_create-news']) !!}
     
         <div class="form-element">
-            {!! Form::select('news[category_id]', $categoriesSelect, $news->category_id, ['placeholder' => 'Pick a category...']) !!}
+            {!! Form::select('news[category]', $categoriesSelect, null, ['placeholder' => 'Pick a category...']) !!}
         </div>
-        <!-- @dump($news['category']); -->
+
         <div class="form-element">
-            {!! Form::select('news[source_id]', $sourcesSelect, $news->source_id, ['placeholder' => 'Pick a source...']) !!}
+            {!! Form::select('news[source]', $sourcesSelect, null, ['placeholder' => 'Pick a source...']) !!}
         </div>
 
         <div class="form-element">
             {!! Form::label('news[title]', 'Enter a news title:') !!}<br>
-            {!! Form::text('news[title]', $news->title, ['placeholder' => 'Title']) !!}
+            {!! Form::text('news[title]', '', ['placeholder' => 'Title']) !!}
         </div>
 
         <div class="form-element">
             {!! Form::label('news[text]', 'Enter a news text:') !!}<br>
-            {!! Form::textarea('news[text]', $news->text, ['placeholder' => 'News text']) !!}
+            {!! Form::textarea('news[text]','', ['placeholder' => 'News text']) !!}
         </div>
         
-        @if ($news->id) 
-            {!! Form::submit('Edit', ['class' => 'button']) !!}
-        @else
-            {!! Form::submit('Add news', ['class' => 'button']) !!}
-        @endif
+        {!! Form::submit('Send', ['class' => 'button']) !!}
 
     {!! Form::close() !!}
 @endsection

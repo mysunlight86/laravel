@@ -34,7 +34,10 @@ Route::group([
     Route::get('/', [NewsController::class, 'index'])
         ->name('index');
 
-    Route::get('/category/{categoryId}', [NewsController::class, 'getCategory'])
+    Route::get('/categories', [NewsController::class, 'categories'])
+        ->name('categories');
+
+    Route::get('/category/{categoryId}', [NewsController::class, 'getByCategory'])
         ->name('category')
         ->where('categoryId', '[0-9]+');
 
@@ -53,12 +56,33 @@ Route::group([
 ], function () {
     Route::get('/', 'NewsController@index')
         ->name('index');
-    Route::get('/create', 'NewsController@createCategoryView')
+    Route::get('/create-category', 'NewsController@createCategoryView')
         ->name('create-category-view');
-    Route::post('/create', 'NewsController@createCategory')
+    Route::post('/create-category', 'NewsController@createCategory')
         ->name('create-category');
-    Route::get('/create-news', 'NewsController@createNewsView')
-        ->name('create-news-view');
-    Route::post('/create-news', 'NewsController@createNews')
-            ->name('create-news');
+    Route::get('/create-source', 'NewsController@createSourceView')
+        ->name('create-source-view');
+    Route::post('/create-source', 'NewsController@createSource')
+        ->name('create-source');
+    // Route::get('/create-news', 'NewsController@createNewsView')
+    //     ->name('create-news-view');
+    // Route::post('/create-news', 'NewsController@createNews')
+    //     ->name('create-news');
+    Route::match(['post', 'get'], '/addNews', [
+        'uses' => 'NewsController@add',
+        'as' => 'addNews'
+    ]);
+    Route::match(['post', 'get'], '/updateNews/{news}', [
+        'uses' => 'NewsController@update',
+        'as' => 'updateNews'
+    ]);
+    Route::match(['post', 'get'], '/deleteNews/{news}', [
+        'uses' => 'NewsController@delete',
+        'as' => 'deleteNews'
+    ]);
+    // Route::get('/edit-news/{$id}', 'NewsController@editNewsView')
+    //     ->name('edit-news-view')
+    //     ->where('id', '[0-9]+');
+    // Route::post('/update-news', 'NewsController@editNews')
+    //     ->name('edit-news');
 });
